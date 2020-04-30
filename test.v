@@ -8,14 +8,14 @@ module top(
   reg [3:0] count;
 
   wire and_reduce;
-  wire not_equals;
+  wire check_equal;
 
   assign and_reduce = &r;
-  assign not_equals = r == 68'hffff_ffff_ffff_ffff_f;
+  assign check_equal = r == 68'hffff_ffff_ffff_ffff_f;
 
   always @(posedge clock or posedge reset) begin
     if (!reset)
-      $display("reset = %x, r = %x, and_reduce = %x, not_equals = %x", reset, r, and_reduce, not_equals);
+      $display("reset = %x, r = %x, and_reduce = %x, check_equal = %x", reset, r, and_reduce, check_equal);
     if (reset)
       r <= 68'd0;
     else if (count == 4'd0)
